@@ -1,0 +1,50 @@
+[tool.black]
+line-length = 120
+target_version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+    | \.git
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | venv
+    | _build
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.coverage]
+    [tool.coverage.run]
+    include = ['backend/apps/*']
+    relative_files = true
+
+    [tool.coverage.report]
+    exclude_lines = [
+        'pragma: no cover',
+
+        # Don't complain about missing debug-only code:
+        'def __repr__',
+        'if self.debug',
+
+        # Don't complain if tests don't hit defensive assertion code:
+        'raise AssertionError',
+        'raise NotImplementedError',
+        'except ImportError',
+
+        # Don't complain if non-runnable code isn't run:
+        'if 0:',
+        'if __name__ == __main__:'
+    ]
+    omit = [
+        'backend/config/*',
+        'backend/*/migrations/*',
+        'backend/*/tests/*',
+    ]
+    precision = 2
+
+    [tool.coverage.html]
+    directory = 'htmlcov/'
