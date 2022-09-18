@@ -10,6 +10,10 @@ class BaseModel(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
+    @property
+    def total_participants(self):
+        return self.participants.count()
+
     class Meta:
         abstract = True
 
