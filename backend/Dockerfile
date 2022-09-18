@@ -14,6 +14,6 @@ COPY requirements /requirements
 RUN pip install --upgrade pip && pip install -r ./requirements/local.txt
 
 # upload scripts
-COPY ./scripts/start.sh ./scripts/gunicorn.sh /
+COPY ./scripts/start.sh /
 
 WORKDIR /app
