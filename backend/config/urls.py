@@ -5,5 +5,5 @@ urlpatterns = [
     re_path("admin/", admin.site.urls, name="admin"),
     re_path("^api/(?P<version>(v1))/", include("dj_rest_auth.urls")),
     re_path("^api/(?P<version>(v1))/registration/", include("dj_rest_auth.registration.urls")),
-    re_path("^api/(?P<version>(v1))", include("apps.events.urls")),
+    re_path("^api/(?P<version>(v1))/", include("apps.events.urls")),
 ]
