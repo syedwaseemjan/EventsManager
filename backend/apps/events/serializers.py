@@ -74,7 +74,7 @@ class EventSerializer(SerializerErrorMessagesMixin, serializers.ModelSerializer)
         return event_date
 
 
-class EventParticipantSerializer(SerializerErrorMessagesMixin, serializers.ModelSerializer):
+class ParticipantSerializer(SerializerErrorMessagesMixin, serializers.ModelSerializer):
     class Meta:
         model = Participant
         fields = ("event", "user")

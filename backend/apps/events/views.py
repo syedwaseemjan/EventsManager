@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import Event
-from .serializers import EventParticipantSerializer, EventSerializer
+from .serializers import EventSerializer, ParticipantSerializer
 
 
 class ListEventsPermission(IsAuthenticated):
@@ -50,7 +50,7 @@ class EventViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=["post"])
     def signup_for_event(self, request, *args, **kwargs):
         data = {"event": self.get_object().pk, "user": self.request.user.pk}
-        serializer = EventParticipantSerializer(data=data)
+        serializer = ParticipantSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
