@@ -29,9 +29,19 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["rest_framework", "rest_framework.authtoken", "dj_rest_auth", "allauth", "allauth.account"]
+THIRD_PARTY_APPS = [
+    "rest_framework",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    "allauth",
+    "allauth.account",
+    "drf_yasg",
+]
 
-LOCAL_APPS = ["apps.events"]
+LOCAL_APPS = [
+    "apps.events",
+    "apps.swagger",
+]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -216,3 +226,11 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "none"
+
+# drf_yasg
+SWAGGER_SETTINGS = {
+    "DEFAULT_INFO": "apps.swagger.openapi.API_INFO",
+}
+
+# API Versioning
+CURRENT_API_VERSION = "2022-07-29"

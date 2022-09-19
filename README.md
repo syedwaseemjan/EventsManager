@@ -68,3 +68,40 @@ $ make black
 $ make flake8
 ```
 
+### Building Swagger/OpenAPI 2.0 schema file
+
+To generate a swagger schema file run the following command:
+
+    $ python manage.py generate_swagger swagger.yaml -o -f yaml
+
+Whenever new API endpoints are created, running `generate_swagger` will create the schema for it. However, if auto generated schema needs manual changes then use [swagger_auto_schema](https://drf-yasg.readthedocs.io/en/stable/custom_spec.html#the-swagger-auto-schema-decorator) decorator.
+
+To provide response examples, create an `api_examples` directory in the respective app and then set the path of JSON response in `responses>examples` of `swagger_auto_schema`:
+
+```python
+    bla_bla_view_schema = swagger_auto_schema(
+        operation_description='Creates bla bla.',
+        request_body=BlaSerializer,
+        responses={
+            status.HTTP_201_CREATED: openapi.Response(
+                'BlaBla created successfully.',
+                RateTableSerializer,
+                examples={
+                    'application/json': 'apps/events/api_examples/bla.json',
+                }
+            )
+        }
+    )
+```
+
+You can view the schema using Swagger UI by visiting [http://127.0.0.1:8000/swagger/](http://127.0.0.1:8000/swagger/) in browser.
+
+I am using [drf-yasg](https://github.com/axnsan12/drf-yasg) package for generation of schema and it's documentation can be found [here](https://drf-yasg.readthedocs.io/en/stable/).
+
+### The API
+
+You can find the API documentation in:
+
+- [This project's swagger file](http://127.0.0.1:8000/swagger/).
+
+

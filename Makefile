@@ -54,10 +54,10 @@ flake8: # Run flake8
 	docker-compose run backend flake8
 
 isort: # Run isort recursively and fix the imports order
-	docker-compose run backend isort . -p britelines
+	docker-compose run backend isort .
 
 isort.checkonly: # Run isort recursively but only check for improper imports order
-	docker-compose run backend isort . -p britelines --check-only
+	docker-compose run backend isort . --check-only
 
 lint: # Run the black code format checker and flake8 checkers (pep-8, pyflakes, isort, mccabe)
 	docker-compose run backend flake8 --exit-zero
