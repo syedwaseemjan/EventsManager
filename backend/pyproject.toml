@@ -19,7 +19,7 @@ exclude = '''
 
 [tool.coverage]
     [tool.coverage.run]
-    include = ['backend/apps/*']
+    include = ['apps/*']
     relative_files = true
 
     [tool.coverage.report]
@@ -40,9 +40,9 @@ exclude = '''
         'if __name__ == __main__:'
     ]
     omit = [
-        'backend/config/*',
-        'backend/*/migrations/*',
-        'backend/*/tests/*',
+        'config/*',
+        '*/migrations/*',
+        '*/tests/*',
     ]
     precision = 2
 
