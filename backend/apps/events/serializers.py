@@ -1,3 +1,4 @@
+from django.db import transaction
 from django.utils import timezone
 from django.utils.encoding import force_str
 from rest_framework import serializers
@@ -72,6 +73,12 @@ class EventSerializer(SerializerErrorMessagesMixin, serializers.ModelSerializer)
             raise RestValidationError(f"You already have another event on date: {event_date}.")
 
         return event_date
+
+    @transaction.atomic
+    def create(self, validated_data):
+        event = super(EventSerializer, self).create(validated_data)
+        event.participants.create(user=self.user)
+        return event
 
 
 class ParticipantSerializer(SerializerErrorMessagesMixin, serializers.ModelSerializer):
