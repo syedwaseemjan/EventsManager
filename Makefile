@@ -11,10 +11,10 @@ help:
 
 # target: test - calls the "test" django command
 test:
-	docker-compose run backend python manage.py test
+	docker-compose run backend pytest -n auto $(PYTEST_ARGS)
 
 coverage: # Run tests, generate coverage report, and open it
-	docker-compose run backend coverage run -m unittest
+	docker-compose run backend coverage run -m pytest -n auto
 	docker-compose run backend coverage html
 	open htmlcov/index.html
 
