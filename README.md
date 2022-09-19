@@ -27,11 +27,11 @@ If all works well, you should be able to load dummy data and create an admin acc
 
 #### 3. Load
     
-    $ Goto http://127.0.0.1:8000/
+    $ Goto http://127.0.0.1:7000/
 
 For admin panel
 
-    $ Goto http://127.0.0.1:8000/admin/
+    $ Goto http://127.0.0.1:7000/admin/
 
 #### 4. Setting up commit hooks
 
@@ -96,7 +96,7 @@ To provide response examples, create an `api_examples` directory in the respecti
     )
 ```
 
-You can view the schema using Swagger UI by visiting [http://127.0.0.1:8000/swagger/](http://127.0.0.1:8000/swagger/) in browser.
+You can view the schema using Swagger UI by visiting [http://127.0.0.1:7000/swagger/](http://127.0.0.1:7000/swagger/) in browser.
 
 drf-yasg [documentation](https://drf-yasg.readthedocs.io/en/stable/).
 
@@ -104,6 +104,6 @@ drf-yasg [documentation](https://drf-yasg.readthedocs.io/en/stable/).
 
 API documentation:
 
-- [This project's swagger file](http://127.0.0.1:8000/swagger/).
+- [This project's swagger file](http://127.0.0.1:7000/swagger/).
 
 
