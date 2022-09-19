@@ -17,8 +17,8 @@ security:
 paths:
   /api/{version}/events/:
     get:
-      operationId: api_events_list
-      description: ''
+      operationId: getEvents
+      description: Retrieves the list of events.
       parameters:
         - name: page
           in: query
@@ -32,16 +32,62 @@ paths:
           type: integer
       responses:
         '200':
-          description: ''
+          description: Retrieves the list of events.
+          examples:
+            application/json:
+              count: 15
+              next: /api/v1/events/?page=2&page_size=5
+              previous: null
+              results:
+                - event_id: 16abba90-5aaa-498b-8f64-cdca71b623f2
+                  title: Test Event 1
+                  description: Test Event 1
+                  date: '2024-12-12T00:00:00Z'
+                  creator: 1
+                  total_participants: 15
+                - event_id: 521f1466-36a7-46f8-b829-76f2b749154b
+                  title: Test Event 2
+                  description: Test Event 2 Description
+                  date: '2024-02-02T00:00:00Z'
+                  creator: 2
+                  total_participants: 0
       tags:
         - api
     post:
-      operationId: api_events_create
-      description: ''
-      parameters: []
+      operationId: createEvent
+      description: Creates an event for a user.
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                title: Title
+                description: Event title.
+                type: string
+              description:
+                title: Description
+                description: Event description.
+                type: string
+              date:
+                title: Date
+                description: Event date.
+                type: string
+                format: date
+                pattern: ^\d{4}-\d{1,2}-\d{1,2}$
       responses:
         '201':
-          description: ''
+          description: Returns `event_id` (UUID) of new event.
+          examples:
+            application/json:
+              event_id: 1d5f8593-26eb-495c-b0bf-c1954558b33e
+              title: Test Event 1
+              description: Test Event 1 Description
+              date: '2024-12-12T00:00:00Z'
+              creator: 1
+              total_participants: 0
       tags:
         - api
     parameters:
@@ -60,12 +106,40 @@ paths:
       tags:
         - api
     put:
-      operationId: api_events_update
-      description: ''
-      parameters: []
+      operationId: editEvents
+      description: Edits an event.
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                title: Title
+                description: Event title.
+                type: string
+              description:
+                title: Description
+                description: Event description.
+                type: string
+              date:
+                title: Date
+                description: Event date.
+                type: string
+                format: date
+                pattern: ^\d{4}-\d{1,2}-\d{1,2}$
       responses:
-        '200':
-          description: ''
+        '201':
+          description: Edits an event.
+          examples:
+            application/json:
+              event_id: 1d5f8593-26eb-495c-b0bf-c1954558b33e
+              title: Test Event 1
+              description: Test Event 1 Description
+              date: '2024-12-12T00:00:00Z'
+              creator: 1
+              total_participants: 0
       tags:
         - api
     delete:
@@ -90,12 +164,21 @@ paths:
         type: string
   /api/{version}/events/{id}/participants/:
     get:
-      operationId: api_events_participants
-      description: ''
+      operationId: getEventParticipants
+      description: Retrieves the list of event participants.
       parameters: []
       responses:
         '200':
-          description: ''
+          description: Retrieves the list of event participants.
+          examples:
+            application/json:
+              count: 15
+              next: api/v1/events/16abba90-5aaa-498b-8f64-cdca71b623f2/participants/?page=2
+              previous: null
+              results:
+                - user1
+                - user2
+                - user3
       tags:
         - api
     parameters:
@@ -111,12 +194,16 @@ paths:
         type: string
   /api/{version}/events/{id}/signup_for_event/:
     post:
-      operationId: api_events_signup_for_event
-      description: ''
+      operationId: signupForEvent
+      description: Adds user for an event.
       parameters: []
       responses:
         '201':
-          description: ''
+          description: Adds user for an event.
+          examples:
+            application/json:
+              event: d53ad258-c730-4622-84af-684193a97653
+              user: 2
       tags:
         - api
     parameters:
@@ -132,12 +219,15 @@ paths:
         type: string
   /api/{version}/events/{id}/withdraw_from_event/:
     delete:
-      operationId: api_events_withdraw_from_event
-      description: ''
+      operationId: withdrawFromEvent
+      description: Withdraws user for an event.
       parameters: []
       responses:
-        '204':
-          description: ''
+        '200':
+          description: Withdraws user for an event.
+          examples:
+            application/json:
+              detail: Deleted.
       tags:
         - api
     parameters:
