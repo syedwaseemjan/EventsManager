@@ -1,7 +1,7 @@
 # Assignment
-As assignment showing how we can create user registration and events portal in django and vuejs where signed in users can
-1. Create new events
-2. Signup for an upcoming event
+A sample project showing how we can create user registration and events portal in django and vuejs where signed in users can
+1. Create new events.
+2. Signup for an upcoming event.
 3. Withdraw from an event.
 
 ## Development
@@ -35,7 +35,7 @@ For admin panel
 
 #### 4. Setting up commit hooks
 
-In order to avoid submitting failing PRs, **make sure** to install pre-commit
+In order to avoid submitting PRs having linting issues, **make sure** to install pre-commit
 hooks configured in this repo by running:
 
 
@@ -49,8 +49,7 @@ the code you are trying to commit.
 
 #### 5. Helpful Commands
 
-There are a few commands to help you out with the task of keeping your code compliant
-with python standards:
+There are a few commands to help you out with the daily tasks:
 
 Run `isort`, `black` and `flake8` checkers:
 

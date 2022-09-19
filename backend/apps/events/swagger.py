@@ -73,7 +73,7 @@ update_event_schema = swagger_auto_schema(
     ),
     responses={
         status.HTTP_201_CREATED: openapi.Response(
-            "Edits an event.",
+            "Returns an updated event.",
             examples={
                 "application/json": {
                     "event_id": "1d5f8593-26eb-495c-b0bf-c1954558b33e",
@@ -93,7 +93,7 @@ get_events_schema = swagger_auto_schema(
     operation_description="Retrieves the list of events.",
     responses={
         status.HTTP_200_OK: openapi.Response(
-            "Retrieves the list of events.",
+            "Retrieves the list of events available.",
             examples={
                 "application/json": {
                     "count": 15,
@@ -150,7 +150,7 @@ signup_for_event_schema = swagger_auto_schema(
     operation_description="Adds user for an event.",
     responses={
         status.HTTP_201_CREATED: openapi.Response(
-            "Adds user for an event.",
+            "Returns the event and participant IDs.",
             examples={"application/json": {"event": "d53ad258-c730-4622-84af-684193a97653", "user": 2}},
         )
     },
@@ -161,7 +161,7 @@ withdraw_from_event_schema = swagger_auto_schema(
     operation_description="Withdraws user for an event.",
     responses={
         status.HTTP_200_OK: openapi.Response(
-            "Withdraws user for an event.",
+            "Withdraws user from an event.",
             examples={"application/json": {"detail": "Deleted."}},
         )
     },
