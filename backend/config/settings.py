@@ -36,6 +36,7 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "drf_yasg",
+    "corsheaders",
 ]
 
 LOCAL_APPS = [
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 # DEBUG
@@ -234,3 +236,8 @@ SWAGGER_SETTINGS = {
 
 # API Versioning
 CURRENT_API_VERSION = "2022-07-29"
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://0.0.0.0:5173",
+]
