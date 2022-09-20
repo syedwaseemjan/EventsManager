@@ -60,6 +60,7 @@ class TestEventViewSet:
         assert response.data["title"] == payload["title"]
         assert response.data["description"] == payload["description"]
         assert response.data["creator"] == self.user.id
+        assert response.data["creator_username"] == self.user.username
         assert response.data["date"] == payload["date"].replace("+00:00", "Z")
         assert response.data["total_participants"] == 1
 
@@ -84,6 +85,7 @@ class TestEventViewSet:
         assert response.status_code == status.HTTP_200_OK
         assert response.data["event_id"] == str(self.event.pk)
         assert response.data["creator"] == self.user.id
+        assert response.data["creator_username"] == self.user.username
         assert response.data["total_participants"] == 1
 
     def test_list_events(self):

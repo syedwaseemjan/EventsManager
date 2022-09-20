@@ -10,10 +10,6 @@ class BaseModel(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
-    @property
-    def total_participants(self):
-        return self.participants.count()
-
     class Meta:
         abstract = True
 
@@ -24,6 +20,14 @@ class Event(BaseModel):
     description = models.TextField()
     date = models.DateTimeField()
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    @property
+    def total_participants(self):
+        return self.participants.count()
+
+    @property
+    def creator_username(self):
+        return self.creator.username
 
     class Meta:
         default_related_name = "events"

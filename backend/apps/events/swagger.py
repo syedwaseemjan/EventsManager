@@ -40,6 +40,7 @@ create_event_schema = swagger_auto_schema(
                     "date": "2024-12-12T00:00:00Z",
                     "creator": 1,
                     "total_participants": 0,
+                    "creator_username": "user1",
                 }
             },
         )
@@ -82,6 +83,7 @@ update_event_schema = swagger_auto_schema(
                     "date": "2024-12-12T00:00:00Z",
                     "creator": 1,
                     "total_participants": 0,
+                    "creator_username": "user1",
                 }
             },
         )
@@ -107,6 +109,7 @@ get_events_schema = swagger_auto_schema(
                             "date": "2024-12-12T00:00:00Z",
                             "creator": 1,
                             "total_participants": 15,
+                            "creator_username": "user1",
                         },
                         {
                             "event_id": "521f1466-36a7-46f8-b829-76f2b749154b",
@@ -115,6 +118,7 @@ get_events_schema = swagger_auto_schema(
                             "date": "2024-02-02T00:00:00Z",
                             "creator": 2,
                             "total_participants": 0,
+                            "creator_username": "user2",
                         },
                     ],
                 }

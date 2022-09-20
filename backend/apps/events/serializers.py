@@ -49,10 +49,11 @@ class SerializerErrorMessagesMixin:
 class EventSerializer(SerializerErrorMessagesMixin, serializers.ModelSerializer):
     event_id = serializers.UUIDField(format="hex_verbose", source="id", read_only=True)
     total_participants = serializers.IntegerField(read_only=True)
+    creator_username = serializers.ReadOnlyField()
 
     class Meta:
         model = Event
-        fields = ["event_id", "title", "description", "date", "creator", "total_participants"]
+        fields = ["event_id", "title", "description", "date", "creator", "total_participants", "creator_username"]
 
     def __init__(self, *args, **kwargs):
         super(EventSerializer, self).__init__(*args, **kwargs)
