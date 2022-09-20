@@ -1,6 +1,7 @@
 import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
+import { eventStore } from 'stores/event';
 
 /*
  * If not building with SSR mode, you can
@@ -25,6 +26,18 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE)
   })
+
+  Router.beforeEach(async (to) => {
+    // redirect to login page if not logged in and trying to access a restricted page
+    const publicPages = ['/', '/login', '/signup'];
+    const authRequired = !publicPages.includes(to.path);
+    const eventStoreObj = eventStore();
+
+    if (authRequired && !eventStoreObj.token) {
+      eventStoreObj.returnUrl = to.fullPath;
+      return '/login';
+    }
+  });
 
   return Router
 })
