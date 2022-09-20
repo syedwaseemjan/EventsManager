@@ -3,8 +3,8 @@ import { usersAPI } from '../api'
 
 export const eventStore = defineStore('event', {
   state: () => ({
-    token: null,
-    user: null
+    token: localStorage.getItem('token'),
+    user: JSON.parse(localStorage.getItem('user'))
   }),
 
   getters: {
@@ -36,6 +36,7 @@ export const eventStore = defineStore('event', {
         this.token = null
         this.user = null
         localStorage.removeItem('token')
+        localStorage.removeItem('user')
         this.router.push('/')
       })   
     },
@@ -43,6 +44,7 @@ export const eventStore = defineStore('event', {
     getUserDetails () {
       return usersAPI.getUserDetails().then(response => {
         this.user = response.data
+        localStorage.setItem('user', JSON.stringify(response.data))
       })  
     }
   }

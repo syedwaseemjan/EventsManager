@@ -32,10 +32,12 @@ export default route(function (/* { store, ssrContext } */) {
     const publicPages = ['/', '/login', '/signup'];
     const authRequired = !publicPages.includes(to.path);
     const eventStoreObj = eventStore();
-
-    if (authRequired && !eventStoreObj.token) {
+    const token = eventStoreObj.token
+    if (authRequired && !token) {
       eventStoreObj.returnUrl = to.fullPath;
-      return '/login';
+      return '/login'
+    } else if (token && ['/login', '/signup'].includes(to.path)) {
+      return '/'
     }
   });
 

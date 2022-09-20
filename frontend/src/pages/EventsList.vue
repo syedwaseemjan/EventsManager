@@ -8,15 +8,31 @@
         :columns="columns"
         v-model:pagination="pagination"
         :loading="loading"
-        @request="onRequest"
-      />
+        @request="onRequest">
+        <template v-slot:body-cell-action="props">
+          <q-td :props="props">
+            <div v-if="user != null" class="q-gutter-sm">
+              <q-btn v-if="props.row.creator == user.pk" color="secondary" label="Edit" size="sm" @click="editEvent(props.row)"/>
+              <q-btn v-else-if="props.row.is_user_participant == false" color="primary" label="Join" size="sm" @click="join(props.row)"/>
+              <q-btn v-else-if="props.row.is_user_participant == true" color="red" label="Withdraw" size="sm" @click="withdraw(props.row)"/>
+            </div>
+          </q-td>
+        </template>
+        <template v-slot:body-cell-total_participants="props">
+          <q-td :props="props">
+            <q-btn color="deep-orange" :label="props.value" size="sm" @click="editEvent(props.row)"/>
+          </q-td>
+        </template>
+      </q-table>
     </div>
   </q-page>
 </template>
 
 <script>
 
-import { eventsAPI } from '../api';
+import { eventStore } from 'stores/event'
+import { mapStores, mapState } from 'pinia'
+import { eventsAPI } from '../api'
 
 export default {
   data () {
@@ -41,6 +57,13 @@ export default {
     }
   },
 
+  computed: {
+    ...mapStores(eventStore),
+    ...mapState(eventStore, {
+      user: "user"
+    }),
+  },
+
   methods: {
     loadEvents(params) {
       eventsAPI.loadEvents(params).then(({ data }) => {
@@ -50,7 +73,7 @@ export default {
           this.pagination.rowsPerPage = params.page_size
           this.pagination.page = params.page
         }
-      });
+      })
     },
     onRequest(props) {
       const params = {
@@ -58,6 +81,18 @@ export default {
         page: props.pagination.page,
       };
       this.loadEvents(params)
+    },
+    join(event) {
+      eventsAPI.signUpForEvent(event.event_id).then(({ data }) => {
+        event.total_participants += 1
+        event.is_user_participant = true
+      })
+    },
+    withdraw(event) {
+      eventsAPI.withdrawFromEvent(event.event_id).then(({ data }) => {
+        event.total_participants -= 1
+        event.is_user_participant = false
+      })
     }
   },
 

@@ -59,7 +59,11 @@ export default {
 
   methods: {
     onSubmit () {
-      this.eventStore.login(this.form)
+      this.eventStore.login(this.form).catch(error => {
+        let errors = error.response.data;
+        errors = JSON.stringify(errors)
+        alert(errors)
+      })
     }
   }
 }
