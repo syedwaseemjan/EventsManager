@@ -1,15 +1,17 @@
 <template>
-  <div class="q-pa-md">
-    <q-table
-      title="Events"
-      row-key="name"
-      :rows="rows"
-      :columns="columns"
-      v-model:pagination="pagination"
-      :loading="loading"
-      @request="onRequest"
-    />
-  </div>
+  <q-page>
+    <div class="q-pa-md">
+      <q-table
+        title="Events"
+        row-key="name"
+        :rows="rows"
+        :columns="columns"
+        v-model:pagination="pagination"
+        :loading="loading"
+        @request="onRequest"
+      />
+    </div>
+  </q-page>
 </template>
 
 <script>
