@@ -9,7 +9,7 @@ const ajax = axios.create({
 
 ajax.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('authtoken');
+    const token = localStorage.getItem('token');
     if (token) {
       config.headers['Authorization'] = `Token ${ token }`;
     }
@@ -28,7 +28,7 @@ const usersAPI = {
     return ajax.post('/logout/', {});
   },
   signup(email, password1, password2) {
-    return ajax.post('/signup/', { email, password1, password2 });
+    return ajax.post('/registration/', { email, password1, password2 });
   },
   getUserDetails() {
     return ajax.get('/user/');
