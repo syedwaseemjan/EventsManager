@@ -41,6 +41,7 @@ create_event_schema = swagger_auto_schema(
                     "creator": 1,
                     "total_participants": 0,
                     "creator_username": "user1",
+                    "is_user_participant": True,
                 }
             },
         )
@@ -84,6 +85,7 @@ update_event_schema = swagger_auto_schema(
                     "creator": 1,
                     "total_participants": 0,
                     "creator_username": "user1",
+                    "is_user_participant": True,
                 }
             },
         )
@@ -110,6 +112,7 @@ get_events_schema = swagger_auto_schema(
                             "creator": 1,
                             "total_participants": 15,
                             "creator_username": "user1",
+                            "is_user_participant": True,
                         },
                         {
                             "event_id": "521f1466-36a7-46f8-b829-76f2b749154b",
@@ -119,6 +122,7 @@ get_events_schema = swagger_auto_schema(
                             "creator": 2,
                             "total_participants": 0,
                             "creator_username": "user2",
+                            "is_user_participant": True,
                         },
                     ],
                 }

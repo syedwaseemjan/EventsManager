@@ -50,16 +50,31 @@ class EventSerializer(SerializerErrorMessagesMixin, serializers.ModelSerializer)
     event_id = serializers.UUIDField(format="hex_verbose", source="id", read_only=True)
     total_participants = serializers.IntegerField(read_only=True)
     creator_username = serializers.ReadOnlyField()
+    is_user_participant = serializers.SerializerMethodField()
 
     class Meta:
         model = Event
-        fields = ["event_id", "title", "description", "date", "creator", "total_participants", "creator_username"]
+        fields = [
+            "event_id",
+            "title",
+            "description",
+            "date",
+            "creator",
+            "total_participants",
+            "creator_username",
+            "is_user_participant",
+        ]
 
     def __init__(self, *args, **kwargs):
         super(EventSerializer, self).__init__(*args, **kwargs)
         self.user = self.context["request"].user
         if "data" in kwargs:
             kwargs["data"]["creator"] = self.user.pk
+
+    def get_is_user_participant(self, event):
+        if not self.user:
+            return False
+        return event.is_participant(self.user)
 
     def validate_date(self, event_date):
         if event_date and event_date.date() < timezone.now().date():

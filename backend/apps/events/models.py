@@ -29,6 +29,9 @@ class Event(BaseModel):
     def creator_username(self):
         return self.creator.username
 
+    def is_participant(self, user):
+        return self.participants.filter(user_id=user.id).exists()
+
     class Meta:
         default_related_name = "events"
         ordering = ("-date",)

@@ -46,6 +46,7 @@ paths:
                   creator: 1
                   total_participants: 15
                   creator_username: user1
+                  is_user_participant: true
                 - event_id: 521f1466-36a7-46f8-b829-76f2b749154b
                   title: Test Event 2
                   description: Test Event 2 Description
@@ -53,6 +54,7 @@ paths:
                   creator: 2
                   total_participants: 0
                   creator_username: user2
+                  is_user_participant: true
       tags:
         - api
     post:
@@ -91,6 +93,7 @@ paths:
               creator: 1
               total_participants: 0
               creator_username: user1
+              is_user_participant: true
       tags:
         - api
     parameters:
@@ -144,6 +147,7 @@ paths:
               creator: 1
               total_participants: 0
               creator_username: user1
+              is_user_participant: true
       tags:
         - api
     delete:
