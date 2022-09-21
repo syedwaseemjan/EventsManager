@@ -5,6 +5,7 @@ export const eventStore = defineStore("event", {
   state: () => ({
     token: localStorage.getItem("token"),
     user: JSON.parse(localStorage.getItem("user")),
+    returnUrl: null,
   }),
 
   getters: {

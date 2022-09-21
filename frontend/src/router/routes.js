@@ -1,5 +1,6 @@
 const routes = [
   {
+    name: "home",
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
@@ -21,8 +22,16 @@ const routes = [
         props: true,
         component: () => import("pages/ParticipantsList.vue"),
       },
-      { path: "login", component: () => import("pages/UserLogin.vue") },
-      { path: "signup", component: () => import("pages/UserSignup.vue") },
+      {
+        name: "login",
+        path: "login",
+        component: () => import("pages/UserLogin.vue"),
+      },
+      {
+        name: "signup",
+        path: "signup",
+        component: () => import("pages/UserSignup.vue"),
+      },
     ],
   },
 
