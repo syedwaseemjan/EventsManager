@@ -34,7 +34,7 @@ class Event(BaseModel):
 
     class Meta:
         default_related_name = "events"
-        ordering = ("-date",)
+        ordering = ("date",)
 
     def __str__(self):
         return f"{self.title} - {self.date} - {self.creator}"
