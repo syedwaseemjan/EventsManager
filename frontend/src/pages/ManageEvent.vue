@@ -47,7 +47,9 @@
             />
           </div>
           <div>
-            <q-btn label="Create Event" type="submit" color="primary"/>
+            <q-btn type="submit" color="primary">
+              {{ eventId ? 'Update' : 'Create' }} Event
+            </q-btn>
           </div>
         </q-form>
       </div>
@@ -65,7 +67,9 @@ export default {
   name: 'ManageEvent',
   props: {
     eventId: {
-      type: String
+      type: String,
+      required: false,
+      default: null
     }
   },
   data () {
@@ -74,7 +78,8 @@ export default {
         title: '',
         description: '',
         date: '',
-        time: ''
+        time: '',
+        datetime: ''
       }
     }
   },
@@ -84,6 +89,32 @@ export default {
   },
 
   methods: {
+    loadEvent(params) {
+      if (this.eventId == null) {
+        return
+      }
+      eventsAPI.getEvent(this.eventId).then(response => {
+        const data = response.data
+        let datetime = new Date(data.date)
+        let time = datetime.toLocaleTimeString()
+        let date = (datetime.toISOString()).split('T')[0]
+        this.form = {
+          title: data.title,
+          description: data.description,
+          date: date,
+          time: time,
+          datetime: datetime
+        }
+      }).catch(error => {
+        if (error.response) {
+          let errors = error.response.data;
+          errors = JSON.stringify(errors)
+          alert(errors)
+        } else {
+          console.error(error)
+        }
+      })
+    },
     dateChanged (date) {
       if (this.form.time) {
         const timeString = this.form.time + ':00'
@@ -102,14 +133,35 @@ export default {
         description: this.form.description,
         date: this.form.datetime,
       }
-      eventsAPI.createEvent(payload).then(response => {
+      let eventPromise = null
+      if (this.eventId != null) {
+        eventPromise = this.updateEvent(payload)
+      } else {
+        eventPromise = this.createEvent(payload)
+      }
+
+      eventPromise.then(response => {
         this.$router.push('/')
       }).catch(error => {
-        let errors = error.response.data;
-        errors = JSON.stringify(errors)
-        alert(errors)
+        if (error.response) {
+          let errors = error.response.data;
+          errors = JSON.stringify(errors)
+          alert(errors)
+        } else {
+          console.error(error)
+        }
       })
+    },
+    createEvent(payload) {
+      return eventsAPI.createEvent(payload)
+    },
+    updateEvent(payload) {
+      return eventsAPI.updateEvent(this.eventId, payload)
     }
+  },
+
+  mounted() {
+    this.loadEvent()
   }
 }
 </script>
