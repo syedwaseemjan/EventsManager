@@ -6,16 +6,22 @@ A sample project showing how we can create user registration and events portal i
 
 ## Development
 
+    $ git clone git@github.com:syedwaseemjan/sherpany_assignment.git
+    $ cd sherpany_assignment
+
 Install [Docker](https://docs.docker.com/install/) and [Docker-Compose](https://docs.docker.com/compose/). Start your containers with the following shell command:
 
     $ docker-compose up --build
 
 If all works well, you should be able to load dummy data and create an admin account with:
 
-    $ make loadfixtures
+    $ make loadfixtures (Loading fixtures to create fake data can clear existing records, therefore load them before creating any new users.)
     $ make createsuperuser
 
     Load http://0.0.0.0:5173/ in the browser
+    Either signup or use one of the fake users
+        Email: user1@example.com
+        Password: test123456
 
 ### Backend
 
@@ -37,7 +43,7 @@ If all works well, you should be able to load dummy data and create an admin acc
 In order to avoid submitting PRs having linting issues, **make sure** to install pre-commit
 hooks configured in this repo by running:
 
-
+    $ Install pip in your local environment (Out of docker, in your OS), if pip is not available then try pip3.
     $ pip install pre-commit
     $ pre-commit install
 
@@ -109,3 +115,16 @@ drf-yasg [documentation](https://drf-yasg.readthedocs.io/en/stable/).
 
     $ make frontendformat
     $ make frontendlint
+
+## Features
+
+- Backend
+  - [Python 3.9](https://www.python.org/)
+  - [Django 4.0](https://www.djangoproject.com/)
+  - [Django REST framework](https://www.django-rest-framework.org/)
+  - [Dj-Rest-Auth](https://dj-rest-auth.readthedocs.io/)
+- Frontend
+  - [ES6](http://es6-features.org/#Constants)
+  - [Vue.js 3.0](https://vuejs.org/)
+  - [Quasar Framework](https://quasar.dev/)
+  - [Pinia](https://pinia.vuejs.org/)
