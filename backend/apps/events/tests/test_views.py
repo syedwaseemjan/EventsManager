@@ -54,7 +54,7 @@ class TestEventViewSet:
         payload = self.get_payload()
         request = self.factory.post(self.detail_endpoint, payload, HTTP_AUTHORIZATION=self.token, format="json")
         response = EventViewSet.as_view({"post": "create"})(request)
-        event = Event.objects.filter(creator_id=self.user.id).first()
+        event = Event.objects.filter(creator_id=self.user.id).order_by("-date_added").first()
         assert response.status_code == status.HTTP_201_CREATED
         assert response.data["event_id"] == str(event.id)
         assert response.data["title"] == payload["title"]
