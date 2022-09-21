@@ -79,5 +79,5 @@ frontendformat:
 	docker-compose exec frontend npm run format
 
 frontendlint:
-	docker-compose exec frontend npm run lint --fix
+	docker-compose exec frontend npm run lint
 

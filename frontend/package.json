@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "serve": "npm install && quasar dev",
-    "lint": "eslint --ext .js,.vue ./",
+    "lint": "eslint --ext .js,.vue ./ --fix",
     "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0"
   },
