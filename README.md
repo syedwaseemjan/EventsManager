@@ -1,5 +1,5 @@
 # Assignment
-A sample project showing how we can create user registration and events portal in django and vuejs where signed in users can
+A sample project showing how we can create user registration and events portal in django 4 and Vuejs 3 where signed in users can
 1. Create new events.
 2. Signup for an upcoming event.
 3. Withdraw from an event.
@@ -15,6 +15,8 @@ If all works well, you should be able to load dummy data and create an admin acc
     $ make loadfixtures
     $ make createsuperuser
 
+    Load http://0.0.0.0:5173/ in the browser
+
 ### Backend
 
 #### 1. Run the tests:
@@ -25,13 +27,10 @@ If all works well, you should be able to load dummy data and create an admin acc
 
     $ make coverage
 
-#### 3. Load
+#### 3. Backend URLs
     
-    $ Goto http://127.0.0.1:7000/
-
-For admin panel
-
-    $ Goto http://127.0.0.1:7000/admin/
+    APIs:  http://0.0.0.0:7000/api/v1
+    Admin: http://0.0.0.0:7000/admin/
 
 #### 4. Setting up commit hooks
 
@@ -96,7 +95,7 @@ To provide response examples, create an `api_examples` directory in the respecti
     )
 ```
 
-You can view the schema using Swagger UI by visiting [http://127.0.0.1:7000/swagger/](http://127.0.0.1:7000/swagger/) in browser.
+You can view the schema using Swagger UI by visiting [http://0.0.0.0:7000/swagger/](http://0.0.0.0:7000/swagger/) in browser.
 
 drf-yasg [documentation](https://drf-yasg.readthedocs.io/en/stable/).
 
@@ -104,6 +103,6 @@ drf-yasg [documentation](https://drf-yasg.readthedocs.io/en/stable/).
 
 API documentation:
 
-- [This project's swagger file](http://127.0.0.1:7000/swagger/).
+- [This project's swagger file](http://0.0.0.0:7000/swagger/).
 
 
