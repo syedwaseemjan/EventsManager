@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import { eventStore } from "stores/event";
 import { mapStores, mapState } from "pinia";
 

@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import { eventStore } from "stores/event";
-import { mapStores, mapState } from "pinia";
 import { eventsAPI } from "../api";
 
 export default {

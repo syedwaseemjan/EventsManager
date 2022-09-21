@@ -82,7 +82,6 @@ export default {
         { name: "date", label: "Date", field: "date", align: "center" },
         {
           name: "total_participants",
-          align: "left",
           label: "Total Participants",
           field: "total_participants",
           align: "center",
@@ -132,13 +131,13 @@ export default {
       });
     },
     join(event) {
-      eventsAPI.signUpForEvent(event.event_id).then(({ data }) => {
+      eventsAPI.signUpForEvent(event.event_id).then(() => {
         event.total_participants += 1;
         event.is_user_participant = true;
       });
     },
     withdraw(event) {
-      eventsAPI.withdrawFromEvent(event.event_id).then(({ data }) => {
+      eventsAPI.withdrawFromEvent(event.event_id).then(() => {
         event.total_participants -= 1;
         event.is_user_participant = false;
       });

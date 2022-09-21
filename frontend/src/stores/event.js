@@ -8,7 +8,7 @@ export const eventStore = defineStore("event", {
   }),
 
   getters: {
-    isUserAuthenticated(state) {
+    isUserAuthenticated() {
       return this.token != null;
     },
   },
@@ -34,7 +34,7 @@ export const eventStore = defineStore("event", {
     },
 
     logout() {
-      return usersAPI.logout().then((response) => {
+      return usersAPI.logout().then(() => {
         this.token = null;
         this.user = null;
         localStorage.removeItem("token");

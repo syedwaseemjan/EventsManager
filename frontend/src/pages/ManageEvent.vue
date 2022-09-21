@@ -94,7 +94,7 @@ export default {
   },
 
   methods: {
-    loadEvent(params) {
+    loadEvent() {
       if (this.eventId == null) {
         return;
       }
@@ -149,7 +149,7 @@ export default {
       }
 
       eventPromise
-        .then((response) => {
+        .then(() => {
           this.$router.push("/");
         })
         .catch((error) => {
