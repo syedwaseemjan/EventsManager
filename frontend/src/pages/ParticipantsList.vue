@@ -9,10 +9,11 @@
         v-model:pagination="pagination"
         :loading="loading"
         @request="onRequest"
-        style="width: 30vw">
+        style="width: 30vw"
+      >
         <template v-slot:body-cell-username="props">
           <q-td :props="props">
-            {{props.row}}
+            {{ props.row }}
           </q-td>
         </template>
       </q-table>
@@ -20,59 +21,57 @@
   </q-page>
 </template>
 
-
 <script>
-
-import { eventStore } from 'stores/event'
-import { mapStores, mapState } from 'pinia'
-import { eventsAPI } from '../api'
+import { eventStore } from "stores/event";
+import { mapStores, mapState } from "pinia";
+import { eventsAPI } from "../api";
 
 export default {
-  name: 'ParticipantsList',
+  name: "ParticipantsList",
   props: {
     eventId: {
-      type: String
-    }
+      type: String,
+    },
   },
-  data () {
+  data() {
     return {
       loading: false,
       pagination: {
-        sortBy: 'desc',
+        sortBy: "desc",
         descending: false,
         page: 1,
         rowsPerPage: 10,
-        rowsNumber: 0
+        rowsNumber: 0,
       },
       columns: [
-        { name: 'username', label: '', field: 'username', align: 'center' },
+        { name: "username", label: "", field: "username", align: "center" },
       ],
-      rows: []
-    }
+      rows: [],
+    };
   },
 
   methods: {
     loadParticipants(params) {
       eventsAPI.getEventParticipants(this.eventId, params).then(({ data }) => {
-        this.rows = data.results
-        this.pagination.rowsNumber = data.count
+        this.rows = data.results;
+        this.pagination.rowsNumber = data.count;
         if (params) {
-          this.pagination.rowsPerPage = params.page_size
-          this.pagination.page = params.page
+          this.pagination.rowsPerPage = params.page_size;
+          this.pagination.page = params.page;
         }
-      })
+      });
     },
     onRequest(props) {
       const params = {
         page_size: props.pagination.rowsPerPage,
         page: props.pagination.page,
       };
-      this.loadParticipants(params)
+      this.loadParticipants(params);
     },
   },
 
   mounted() {
-    this.loadParticipants()
-  }
-}
+    this.loadParticipants();
+  },
+};
 </script>

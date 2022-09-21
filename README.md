@@ -1,5 +1,5 @@
 # Assignment
-A sample project showing how we can create user registration and events portal in django 4 and Vuejs 3 where signed in users can
+A sample project showing how we can create user registration and events portal in Django 4 and Vuejs 3 where signed in users can
 1. Create new events.
 2. Signup for an upcoming event.
 3. Withdraw from an event.
@@ -99,10 +99,12 @@ You can view the schema using Swagger UI by visiting [http://0.0.0.0:7000/swagge
 
 drf-yasg [documentation](https://drf-yasg.readthedocs.io/en/stable/).
 
-#### 7. The API
+#### 7. API documentation:
 
-API documentation:
+- [OpenAPI 2.0 based documentation](http://0.0.0.0:7000/swagger/).
 
-- [This project's swagger file](http://0.0.0.0:7000/swagger/).
+### Frontend
 
+#### 1. Format and Lint the js and vue code
 
+    $ make frontendlint

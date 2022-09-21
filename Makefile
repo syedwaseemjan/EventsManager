@@ -75,3 +75,7 @@ lint:
 	docker-compose exec backend isort .
 	docker-compose exec backend black --check .
 
+frontendlint:
+	docker-compose exec frontend npm run format
+	docker-compose exec frontend npm run lint --fix
+

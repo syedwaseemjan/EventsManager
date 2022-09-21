@@ -4,10 +4,18 @@
       <q-toolbar class="text-white shadow-2 rounded-borders">
         Events App
         <q-space />
-        <q-tabs shrink
+        <q-tabs
+          shrink
           v-for="headerLink in headerLinks"
-          :key="headerLink.label">
-          <q-route-tab :to="headerLink.url" exact replace :label="headerLink.label" @click="navigationPreprocessor($event, headerLink.label)" />
+          :key="headerLink.label"
+        >
+          <q-route-tab
+            :to="headerLink.url"
+            exact
+            replace
+            :label="headerLink.label"
+            @click="navigationPreprocessor($event, headerLink.label)"
+          />
         </q-tabs>
       </q-toolbar>
     </q-header>
@@ -19,50 +27,52 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-import { eventStore } from 'stores/event';
-import { mapStores, mapState } from 'pinia'
+import { defineComponent, ref } from "vue";
+import { eventStore } from "stores/event";
+import { mapStores, mapState } from "pinia";
 
 export default defineComponent({
-  name: 'MainLayout',
+  name: "MainLayout",
 
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
 
   computed: {
     ...mapStores(eventStore),
     ...mapState(eventStore, {
-      isUserAuthenticated: "isUserAuthenticated"
+      isUserAuthenticated: "isUserAuthenticated",
     }),
-    headerLinks (){
-      let links = []
+    headerLinks() {
+      let links = [];
       if (this.isUserAuthenticated) {
-        links.push(...[
-          {label: "Home", url: '/'},
-          {label: "New Event", url: '/events'},
-          {label: "Logout", url: '/logout'},
-        ])
+        links.push(
+          ...[
+            { label: "Home", url: "/" },
+            { label: "New Event", url: "/events" },
+            { label: "Logout", url: "/logout" },
+          ]
+        );
       } else {
-        links.push(...[
-          {label: "Home", url: '/'},
-          {label: "Login", url: '/login'},
-          {label: "Signup", url: '/signup'},
-        ])
+        links.push(
+          ...[
+            { label: "Home", url: "/" },
+            { label: "Login", url: "/login" },
+            { label: "Signup", url: "/signup" },
+          ]
+        );
       }
       return links;
-    }
-
+    },
   },
 
   methods: {
-    navigationPreprocessor (event, tabName) {
+    navigationPreprocessor(event, tabName) {
       if (tabName == "Logout") {
-        event.preventDefault()
-        this.eventStore.logout()
+        event.preventDefault();
+        this.eventStore.logout();
       }
-    }
-  }
-})
+    },
+  },
+});
 </script>

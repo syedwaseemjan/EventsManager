@@ -1,18 +1,17 @@
 <template>
-    <q-page>
+  <q-page>
     <div class="row flex-center">
       <div class="q-pa-md" style="min-width: 400px">
-        <q-form
-          @submit="onSubmit"
-          class="q-gutter-md"
-        >
+        <q-form @submit="onSubmit" class="q-gutter-md">
           <q-input
             filled
             type="email"
             v-model="form.email"
             label="Email *"
             lazy-rules
-            :rules="[ val => val && val.length > 0 || 'Please type your email']"
+            :rules="[
+              (val) => (val && val.length > 0) || 'Please type your email',
+            ]"
           />
 
           <q-input
@@ -22,7 +21,8 @@
             label="Password *"
             lazy-rules
             :rules="[
-              val => val !== null && val !== '' || 'Please type your password'
+              (val) =>
+                (val !== null && val !== '') || 'Please type your password',
             ]"
           />
 
@@ -33,12 +33,12 @@
             label="Repeat password *"
             lazy-rules
             :rules="[
-              val => val !== null && val !== '' || 'Re-enter your password'
+              (val) => (val !== null && val !== '') || 'Re-enter your password',
             ]"
           />
 
           <div>
-            <q-btn label="Signup" type="submit" color="primary"/>
+            <q-btn label="Signup" type="submit" color="primary" />
           </div>
         </q-form>
       </div>
@@ -47,35 +47,34 @@
 </template>
 
 <script>
-
-import { eventStore } from 'stores/event';
-import { mapStores } from 'pinia'
+import { eventStore } from "stores/event";
+import { mapStores } from "pinia";
 
 export default {
-  name: 'UserSignup',
+  name: "UserSignup",
 
-  data () {
+  data() {
     return {
       form: {
-        email: '',
-        password1: '',
-        password2: ''
-      }
-    }
+        email: "",
+        password1: "",
+        password2: "",
+      },
+    };
   },
 
   computed: {
-    ...mapStores(eventStore)
+    ...mapStores(eventStore),
   },
 
   methods: {
-    onSubmit () {
-      this.eventStore.signup(this.form).catch(error => {
+    onSubmit() {
+      this.eventStore.signup(this.form).catch((error) => {
         let errors = error.response.data;
-        errors = JSON.stringify(errors)
-        alert(errors)
-      })
-    }
-  }
-}
+        errors = JSON.stringify(errors);
+        alert(errors);
+      });
+    },
+  },
+};
 </script>
