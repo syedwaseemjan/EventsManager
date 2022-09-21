@@ -31,7 +31,7 @@
               v-model="form.date"
               filled
               type="date"
-              label="Event Date *"
+              hint="Event Date *"
               lazy-rules
               :rules="[
                 (val) => (val && val.length > 0) || 'Please type event date',
@@ -44,7 +44,7 @@
               v-model="form.time"
               filled
               type="time"
-              label="Event Time *"
+              hint="Event Time *"
               lazy-rules
               :rules="[
                 (val) => (val && val.length > 0) || 'Please type event time',
