@@ -5,9 +5,9 @@
         Events App
         <q-space />
         <q-tabs
-          shrink
           v-for="headerLink in headerLinks"
           :key="headerLink.label"
+          shrink
         >
           <q-route-tab
             :to="headerLink.url"

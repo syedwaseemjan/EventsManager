@@ -2,11 +2,11 @@
   <q-page>
     <div class="row flex-center">
       <div class="q-pa-md" style="min-width: 400px">
-        <q-form @submit="onSubmit" class="q-gutter-md">
+        <q-form class="q-gutter-md" @submit="onSubmit">
           <q-input
+            v-model="form.email"
             filled
             type="email"
-            v-model="form.email"
             label="Email *"
             lazy-rules
             :rules="[
@@ -15,9 +15,9 @@
           />
 
           <q-input
+            v-model="form.password1"
             filled
             type="password"
-            v-model="form.password1"
             label="Password *"
             lazy-rules
             :rules="[
@@ -27,9 +27,9 @@
           />
 
           <q-input
+            v-model="form.password2"
             filled
             type="password"
-            v-model="form.password2"
             label="Repeat password *"
             lazy-rules
             :rules="[

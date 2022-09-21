@@ -2,16 +2,16 @@
   <q-page>
     <div class="q-pa-md row flex-center">
       <q-table
+        v-model:pagination="pagination"
         title="Participants Usernames"
         row-key="name"
         :rows="rows"
         :columns="columns"
-        v-model:pagination="pagination"
         :loading="loading"
-        @request="onRequest"
         style="width: 30vw"
+        @request="onRequest"
       >
-        <template v-slot:body-cell-username="props">
+        <template #body-cell-username="props">
           <q-td :props="props">
             {{ props.row }}
           </q-td>
@@ -29,6 +29,7 @@ export default {
   props: {
     eventId: {
       type: String,
+      default: null,
     },
   },
   data() {
@@ -46,6 +47,10 @@ export default {
       ],
       rows: [],
     };
+  },
+
+  mounted() {
+    this.loadParticipants();
   },
 
   methods: {
@@ -66,10 +71,6 @@ export default {
       };
       this.loadParticipants(params);
     },
-  },
-
-  mounted() {
-    this.loadParticipants();
   },
 };
 </script>

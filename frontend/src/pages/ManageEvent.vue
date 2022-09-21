@@ -2,11 +2,11 @@
   <q-page>
     <div class="row flex-center">
       <div class="q-pa-md" style="min-width: 400px">
-        <q-form @submit="onSubmit" class="q-gutter-md">
+        <q-form class="q-gutter-md" @submit="onSubmit">
           <q-input
+            v-model="form.title"
             filled
             type="text"
-            v-model="form.title"
             label="Event Title *"
             lazy-rules
             :rules="[
@@ -15,9 +15,9 @@
           />
 
           <q-input
+            v-model="form.description"
             filled
             type="textarea"
-            v-model="form.description"
             label="Event Description *"
             lazy-rules
             :rules="[
@@ -28,9 +28,9 @@
 
           <div class="row">
             <q-input
+              v-model="form.date"
               filled
               type="date"
-              v-model="form.date"
               label="Event Date *"
               lazy-rules
               :rules="[
@@ -41,9 +41,9 @@
             />
 
             <q-input
+              v-model="form.time"
               filled
               type="time"
-              v-model="form.time"
               label="Event Time *"
               lazy-rules
               :rules="[
@@ -91,6 +91,10 @@ export default {
 
   computed: {
     ...mapStores(eventStore),
+  },
+
+  mounted() {
+    this.loadEvent();
   },
 
   methods: {
@@ -168,10 +172,6 @@ export default {
     updateEvent(payload) {
       return eventsAPI.updateEvent(this.eventId, payload);
     },
-  },
-
-  mounted() {
-    this.loadEvent();
   },
 };
 </script>

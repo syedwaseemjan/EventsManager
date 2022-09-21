@@ -2,15 +2,15 @@
   <q-page>
     <div class="q-pa-md">
       <q-table
+        v-model:pagination="pagination"
         title="Events"
         row-key="name"
         :rows="rows"
         :columns="columns"
-        v-model:pagination="pagination"
         :loading="loading"
         @request="onRequest"
       >
-        <template v-slot:body-cell-action="props">
+        <template #body-cell-action="props">
           <q-td :props="props">
             <div v-if="user != null" class="q-gutter-sm">
               <q-btn
@@ -37,7 +37,7 @@
             </div>
           </q-td>
         </template>
-        <template v-slot:body-cell-total_participants="props">
+        <template #body-cell-total_participants="props">
           <q-td :props="props">
             <q-btn
               title="Click to load participants list"
@@ -104,6 +104,10 @@ export default {
     }),
   },
 
+  mounted() {
+    this.loadEvents();
+  },
+
   methods: {
     loadEvents(params) {
       eventsAPI.loadEvents(params).then(({ data }) => {
@@ -150,10 +154,6 @@ export default {
         },
       });
     },
-  },
-
-  mounted() {
-    this.loadEvents();
   },
 };
 </script>
