@@ -107,4 +107,5 @@ drf-yasg [documentation](https://drf-yasg.readthedocs.io/en/stable/).
 
 #### 1. Format and Lint the js and vue code
 
+    $ make frontendformat
     $ make frontendlint
