@@ -154,7 +154,7 @@ export default {
 
       eventPromise
         .then(() => {
-          this.$router.push({ name: "home" });
+          this.$router.push("/");
         })
         .catch((error) => {
           if (error.response) {
