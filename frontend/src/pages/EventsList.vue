@@ -20,7 +20,7 @@
         </template>
         <template v-slot:body-cell-total_participants="props">
           <q-td :props="props">
-            <q-btn color="deep-orange" :label="props.value" size="sm" @click="editEvent(props.row)"/>
+            <q-btn title="Click to load participants list" color="deep-orange" :label="props.value" size="sm" @click="loadParticipants(props.row)"/>
           </q-td>
         </template>
       </q-table>
@@ -35,6 +35,7 @@ import { mapStores, mapState } from 'pinia'
 import { eventsAPI } from '../api'
 
 export default {
+  name: 'EventsList',
   data () {
     return {
       loading: false,
@@ -82,6 +83,14 @@ export default {
       };
       this.loadEvents(params)
     },
+    editEvent(event) {
+      this.$router.push({
+        name: 'edit-event',
+        params: {
+          eventId: event.event_id
+        }
+      })
+    },
     join(event) {
       eventsAPI.signUpForEvent(event.event_id).then(({ data }) => {
         event.total_participants += 1
@@ -93,7 +102,15 @@ export default {
         event.total_participants -= 1
         event.is_user_participant = false
       })
-    }
+    },
+    loadParticipants(event) {
+      this.$router.push({
+        name: 'participants-list',
+        params: {
+          eventId: event.event_id
+        }
+      })
+    },
   },
 
   mounted() {

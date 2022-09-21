@@ -5,7 +5,23 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/EventsList.vue') },
-      { path: 'new-event', component: () => import('pages/NewEvent.vue') },
+      {
+        name: 'new-event',
+        path: 'events',
+        component: () => import('pages/ManageEvent.vue')
+      },
+      { 
+        name: 'edit-event',
+        path: 'events/:eventId',
+        props: true,
+        component: () => import('pages/ManageEvent.vue')
+      },
+      {
+        name: 'participants-list',
+        path: 'events/:eventId/participants',
+        props: true,
+        component: () => import('pages/ParticipantsList.vue')
+      },
       { path: 'login', component: () => import('pages/UserLogin.vue') },
       { path: 'signup', component: () => import('pages/UserSignup.vue') }
     ]

@@ -41,7 +41,7 @@ export default defineComponent({
       if (this.isUserAuthenticated) {
         links.push(...[
           {label: "Home", url: '/'},
-          {label: "New Event", url: '/new-event'},
+          {label: "New Event", url: '/events'},
           {label: "Logout", url: '/logout'},
         ])
       } else {

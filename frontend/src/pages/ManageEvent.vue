@@ -62,8 +62,12 @@ import { mapStores } from 'pinia'
 import { eventsAPI } from '../api'
 
 export default {
-  name: 'NewEvent',
-
+  name: 'ManageEvent',
+  props: {
+    eventId: {
+      type: String
+    }
+  },
   data () {
     return {
       form: {
