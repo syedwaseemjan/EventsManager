@@ -100,9 +100,9 @@ export default {
       const payload = {
         title: this.form.title,
         description: this.form.description,
-        description: this.form.datetime,
+        date: this.form.datetime,
       }
-      eventsAPI.createEvent(this.form).then(response => {
+      eventsAPI.createEvent(payload).then(response => {
         this.$router.push('/')
       }).catch(error => {
         let errors = error.response.data;
