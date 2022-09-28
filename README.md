@@ -6,8 +6,8 @@ A sample project showing how we can create user registration and events portal i
 
 ## Development
 
-    $ git clone git@github.com:syedwaseemjan/sherpany_assignment.git
-    $ cd sherpany_assignment
+    $ git clone git@github.com:syedwaseemjan/EventsManager.git
+    $ cd EventsManager
 
 Install [Docker](https://docs.docker.com/install/) and [Docker-Compose](https://docs.docker.com/compose/). Start your containers with the following shell command:
 
